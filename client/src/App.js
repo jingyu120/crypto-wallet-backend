@@ -1,56 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
+import io from "socket.io-client";
+
+const socket = io.connect("http://localhost:3001");
 
 function App() {
+  const [username, setUsername] = useState("");
+  const [room, setRoom] = useState("");
+  const joinRoom = () => {
+    if (username !== "" && room !== "") {
+      socket.emit("join_room", room);
+    }
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <h3>Join A Chat</h3>
+      <input
+        type="text"
+        placeholder="John..."
+        onChange={(event) => {
+          setUsername(event.target.value);
+        }}
+      />
+      <input
+        type="text"
+        placeholder="Room ID..."
+        onChange={(event) => {
+          setRoom(event.target.value);
+        }}
+      />
+      <button onClick={joinRoom}>Join a Room</button>
     </div>
   );
 }
