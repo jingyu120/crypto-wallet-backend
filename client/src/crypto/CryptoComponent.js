@@ -22,8 +22,8 @@ export default function CryptoComponent() {
             {/* <th>Rank</th> */}
             <th>Price USD</th>
             <th>% Change</th>
-            <th>Market Cap</th>
-            <th>Volume</th>
+            {/* <th>Market Cap</th> */}
+            {/* <th>Volume</th> */}
           </tr>
         </thead>
         <tbody>
@@ -35,8 +35,8 @@ export default function CryptoComponent() {
                   <td>{coin.name}</td>
                   <td>{coin.price_usd}</td>
                   <td>{coin.percent_change_24h}</td>
-                  <td>{coin.market_cap_usd}</td>
-                  <td>{coin.volume24}</td>
+                  {/* <td>{coin.market_cap_usd}</td> */}
+                  {/* <td>{coin.volume24}</td> */}
                 </tr>
               );
             })}
