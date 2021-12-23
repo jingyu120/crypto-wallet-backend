@@ -1,0 +1,6 @@
+.crypto-table {
+  display: flex;
+  justify-content: center;
+  height: 80%;
+  margin-top: 15px;
+}

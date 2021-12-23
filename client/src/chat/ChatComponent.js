@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import io from "socket.io-client";
 import Chat from "./Chat";
 import JoinChat from "./JoinChat";
+import "./ChatComponent.css";
 
 const socket = io.connect("http://localhost:3001");
 
@@ -18,7 +19,7 @@ export default function ChatComponent() {
   };
 
   return (
-    <>
+    <div className="chat-container">
       {!showChat ? (
         <JoinChat
           setShowChat={setShowChat}
@@ -29,6 +30,6 @@ export default function ChatComponent() {
       ) : (
         <Chat socket={socket} username={username} room={room} />
       )}
-    </>
+    </div>
   );
 }

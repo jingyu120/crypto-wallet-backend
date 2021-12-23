@@ -1,4 +1,5 @@
 import React from "react";
+import "./JoinChat.css";
 
 export default function JoinChat({
   setShowChat,
