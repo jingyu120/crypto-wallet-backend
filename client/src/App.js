@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import React, { useState } from "react";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
-import Login from "./login/Login";
+import Login from "./Authentication/Login";
 // import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./Firebase";
 import { signOut } from "firebase/auth";
+import Registration from "./Authentication/Registration";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
@@ -24,7 +25,7 @@ function App() {
       <Router>
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/portfolio">Portfolio</Link>
+          {isAuth && <Link to="/portfolio">Portfolio</Link>}
           {isAuth ? (
             <button onClick={signingOut}>Log Out</button>
           ) : (
@@ -33,7 +34,8 @@ function App() {
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/portfolio" element={<Portfolio isAuth={isAuth} />} />
           <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
         </Routes>
       </Router>

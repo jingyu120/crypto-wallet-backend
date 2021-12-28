@@ -33,7 +33,7 @@ export default function CryptoComponent() {
                 <tr key={coin.id}>
                   <td>{coin.symbol}</td>
                   <td>{coin.name}</td>
-                  <td>{coin.price_usd}</td>
+                  <td>${coin.price_usd}</td>
                   <td>{coin.percent_change_24h}</td>
                   {/* <td>{coin.market_cap_usd}</td> */}
                   {/* <td>{coin.volume24}</td> */}
