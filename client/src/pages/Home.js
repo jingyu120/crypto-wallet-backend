@@ -1,6 +1,6 @@
 import React from "react";
 import ChatComponent from "../chat/ChatComponent";
-import CryptoComponent from "./CryptoComponent";
+import CryptoComponent from "./crypto/CryptoComponent";
 
 export default function Home() {
   return (

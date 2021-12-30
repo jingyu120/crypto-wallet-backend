@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./CyrptoComponent.css";
+import BuyAmount from "./BuyAmount";
 
 export default function CryptoComponent() {
   const [cryptoList, setCryptoList] = useState({});
+  const [amount, setAmount] = useState(0);
+
   useEffect(() => {
     axios
       .get("https://api.coinlore.net/api/tickers/?start=0&limit=10")
@@ -19,10 +22,10 @@ export default function CryptoComponent() {
           <tr>
             <th>Symbol</th>
             <th>Name</th>
-            {/* <th>Rank</th> */}
             <th>Price USD</th>
             <th>% Change</th>
-            {/* <th>Market Cap</th> */}
+            <th>Buy</th>
+            <th>Cost</th>
             {/* <th>Volume</th> */}
           </tr>
         </thead>
@@ -35,6 +38,9 @@ export default function CryptoComponent() {
                   <td>{coin.name}</td>
                   <td>${coin.price_usd}</td>
                   <td>{coin.percent_change_24h}</td>
+
+                  <BuyAmount coinCost={coin.price_usd} />
+
                   {/* <td>{coin.market_cap_usd}</td> */}
                   {/* <td>{coin.volume24}</td> */}
                 </tr>
