@@ -39,7 +39,7 @@ export default function CryptoComponent() {
                   <td>${coin.price_usd}</td>
                   <td>{coin.percent_change_24h}</td>
 
-                  <BuyAmount coinCost={coin.price_usd} />
+                  <BuyAmount coinCost={coin.price_usd} coinName={coin.symbol} />
 
                   {/* <td>{coin.market_cap_usd}</td> */}
                   {/* <td>{coin.volume24}</td> */}
