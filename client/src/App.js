@@ -1,21 +1,18 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
-import Login from "./Authentication/Login";
-// import { onAuthStateChanged } from "firebase/auth";
+import Login from "./authentication/Login";
 import { auth } from "./Firebase";
 import { signOut } from "firebase/auth";
-import Registration from "./Authentication/Registration";
+import Registration from "./authentication/Registration";
+import { AuthContext } from "./authContext/Auth";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
-
+  const { currentUser } = useContext(AuthContext);
   const signingOut = () => {
     signOut(auth).then(() => {
-      localStorage.clear();
-      setIsAuth(false);
       window.location.pathname = "/login";
     });
   };
@@ -25,8 +22,9 @@ function App() {
       <Router>
         <nav>
           <Link to="/">Home</Link>
-          {isAuth && <Link to="/portfolio">Portfolio</Link>}
-          {isAuth ? (
+          {console.log("current user:", currentUser)}
+          {currentUser && <Link to="/portfolio">Portfolio</Link>}
+          {currentUser ? (
             <button onClick={signingOut}>Log Out</button>
           ) : (
             <Link to="/login">Login</Link>
@@ -35,8 +33,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/registration" element={<Registration />} />
-          <Route path="/portfolio" element={<Portfolio isAuth={isAuth} />} />
-          <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+          <Route
+            path="/portfolio"
+            element={<Portfolio currentUser={currentUser} />}
+          />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </div>

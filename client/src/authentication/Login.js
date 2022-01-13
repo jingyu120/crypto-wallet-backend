@@ -1,10 +1,10 @@
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, provider } from "../Firebase";
+import { auth, isLoggedIn, provider } from "../Firebase";
 import "./Login.css";
 
-export default function Login({ setIsAuth }) {
+export default function Login() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const navigate = useNavigate();
@@ -17,7 +17,6 @@ export default function Login({ setIsAuth }) {
         loginPassword
       );
       console.log(user);
-      setIsAuth(true);
       navigate("/");
     } catch (error) {
       alert(error);
@@ -25,8 +24,7 @@ export default function Login({ setIsAuth }) {
   };
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
-      localStorage.setItem("isAuth", true);
-      setIsAuth(true);
+      console.log(isLoggedIn());
       navigate("/");
     });
   };

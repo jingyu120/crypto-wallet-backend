@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../Firebase";
 
-export default function Portfolio({ isAuth }) {
+export default function Portfolio({ currentUser }) {
   const navigate = useNavigate();
   useEffect(() => {
-    if (!isAuth) {
+    if (!currentUser) {
       navigate("/login");
     }
+    // eslint-disable-next-line
   }, []);
   return (
     <div>
