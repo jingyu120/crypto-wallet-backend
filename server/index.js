@@ -58,7 +58,15 @@ app.post("/createUser", async (req, res) => {
   res.json(user);
 });
 
-app.get("/getCoins", (req, res) => {});
+app.get("/getCoins", async (req, res) => {
+  try {
+    const email = req.query.email;
+    const data = await UserModel.findOne({ email });
+    res.json(data.wallet);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 
 app.post("/addCoin", async (req, res) => {
   const { email, name, amount, cost } = req.body;

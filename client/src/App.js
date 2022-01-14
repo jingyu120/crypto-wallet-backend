@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import React, { useContext } from "react";
 import Home from "./pages/Home";
-import Portfolio from "./pages/Portfolio";
+import Portfolio from "./pages/portfolio/Portfolio";
 import Login from "./authentication/Login";
 import { auth } from "./Firebase";
 import { signOut } from "firebase/auth";
