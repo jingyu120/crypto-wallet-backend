@@ -25,7 +25,7 @@ function App() {
           {console.log("current user:", currentUser)}
           {currentUser && <Link to="/portfolio">Portfolio</Link>}
           {currentUser ? (
-            <button onClick={signingOut}>Log Out</button>
+            <button onClick={signingOut}>Log Out {currentUser.email}</button>
           ) : (
             <Link to="/login">Login</Link>
           )}

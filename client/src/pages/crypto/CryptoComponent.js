@@ -30,8 +30,6 @@ export default function CryptoComponent() {
                 <th>Cost</th>
               </>
             )}
-
-            {/* <th>Volume</th> */}
           </tr>
         </thead>
         <tbody>
