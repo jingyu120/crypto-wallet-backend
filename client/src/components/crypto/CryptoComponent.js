@@ -2,19 +2,21 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import "./CyrptoComponent.css";
 import BuyAmount from "./BuyAmount";
-import { AuthContext } from "../../authContext/Auth";
+import { AuthContext } from "../../services/authContext";
+import { CryptoContext } from "../../services/cryptoContext";
 
 export default function CryptoComponent() {
-  const [cryptoList, setCryptoList] = useState({});
+  // const [cryptoList, setCryptoList] = useState({});
   const { currentUser } = useContext(AuthContext);
+  const { cryptoLists } = useContext(CryptoContext);
 
-  useEffect(() => {
-    axios
-      .get("https://api.coinlore.net/api/tickers/?start=0&limit=10")
-      .then((response) => {
-        setCryptoList(response.data.data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://api.coinlore.net/api/tickers/?start=0&limit=10")
+  //     .then((response) => {
+  //       setCryptoList(response.data.data);
+  //     });
+  // }, []);
   return (
     <div className="crypto-table">
       <table>
@@ -33,8 +35,8 @@ export default function CryptoComponent() {
           </tr>
         </thead>
         <tbody>
-          {cryptoList.length > 0 &&
-            cryptoList.map((coin) => {
+          {cryptoLists.length > 0 &&
+            cryptoLists.map((coin) => {
               return (
                 <tr key={coin.id}>
                   <td>{coin.symbol}</td>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c65afc9a-18bc-4a9e-a825-8ebccdbca19d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/react-chat-app.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/authentication/Firebase.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/authContext/Auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/authentication/Auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/authentication/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/authentication/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/authentication/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/authentication/Registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/chat/Chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/chat/Chat.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/chat/Chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/chat/Chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/chat/ChatComponent.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/chat/ChatComponent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/chat/ChatComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/chat/ChatComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/chat/JoinChat.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/chat/JoinChat.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/chat/JoinChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/chat/JoinChat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/crypto/BuyAmount.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/crypto/BuyAmount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/crypto/BuyButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/crypto/BuyButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/crypto/CryptoComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/crypto/CryptoComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/crypto/CyrptoComponent.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/crypto/CyrptoComponent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/crypto/SellButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/crypto/SellButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/portfolio/Modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/portfolio/Modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/portfolio/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/portfolio/Modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/portfolio/Portfolio.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/portfolio/Portfolio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/portfolio/PortfolioTable.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/portfolio/PortfolioTable.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/portfolio/PortfolioTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/portfolio/PortfolioTable.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="23yvymVJTtiSOL0PX0xjDgx0NwR" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/authentication" />
+      <recent name="$PROJECT_DIR$/client/src/pages" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c65afc9a-18bc-4a9e-a825-8ebccdbca19d" name="Changes" comment="" />
+      <created>1642719403082</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1642719403082</updated>
+      <workItem from="1642719407037" duration="241000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>

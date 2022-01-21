@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { AuthContext } from "../../authContext/Auth";
+import { AuthContext } from "../../services/authContext";
 // import BuyButton from "../crypto/BuyButton";
 // import BuyAmount from "../crypto/BuyAmount";
 import Modal from "./Modal";

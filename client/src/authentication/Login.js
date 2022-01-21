@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, isLoggedIn, provider } from "../Firebase";
+import { auth, isLoggedIn, provider } from "./Firebase";
 import "./Login.css";
 
 export default function Login() {
@@ -16,7 +16,6 @@ export default function Login() {
         loginEmail,
         loginPassword
       );
-      console.log(user);
       navigate("/");
     } catch (error) {
       alert(error);
@@ -24,7 +23,6 @@ export default function Login() {
   };
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
-      console.log(isLoggedIn());
       navigate("/");
     });
   };

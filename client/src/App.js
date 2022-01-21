@@ -1,31 +1,26 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import React, { useContext } from "react";
-import Home from "./pages/Home";
-import Portfolio from "./pages/portfolio/Portfolio";
+import Home from "./components/Home";
+import Portfolio from "./components/portfolio/Portfolio";
 import Login from "./authentication/Login";
-import { auth } from "./Firebase";
-import { signOut } from "firebase/auth";
+import { auth } from "./authentication/Firebase";
 import Registration from "./authentication/Registration";
-import { AuthContext } from "./authContext/Auth";
+import { AuthContext } from "./services/authContext";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
-  const signingOut = () => {
-    signOut(auth).then(() => {
-      window.location.pathname = "/login";
-    });
-  };
 
   return (
     <div className="App">
       <Router>
         <nav>
           <Link to="/">Home</Link>
-          {console.log("current user:", currentUser)}
           {currentUser && <Link to="/portfolio">Portfolio</Link>}
           {currentUser ? (
-            <button onClick={signingOut}>Log Out {currentUser.email}</button>
+            <button onClick={() => auth.signOut()}>
+              Log Out {currentUser.email}
+            </button>
           ) : (
             <Link to="/login">Login</Link>
           )}
