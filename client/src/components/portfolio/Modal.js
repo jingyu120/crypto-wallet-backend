@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import BuyButton from "../crypto/BuyButton";
+import React, { useState } from "react";
+import BuyButton from "../transaction/BuyButton";
+import SellButton from "../transaction/SellButton";
 import "./Modal.css";
 
-function Modal({ setOpenModal, coinName, transaction }) {
+function Modal({ setOpenModal, coinProp }) {
   const [quantity, setQuantity] = useState(0);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {});
 
   return (
     <div className="modalBackground">
@@ -24,7 +22,8 @@ function Modal({ setOpenModal, coinName, transaction }) {
           </button>
         </div>
         <div className="title">
-          <h1>{transaction + " " + coinName}</h1>
+          <h1>{coinProp.transaction + " " + coinProp.coinSelected}</h1>
+          <h2>Coin Amount: {coinProp.coinTotal}</h2>
         </div>
         <div className="body">
           <input
@@ -44,15 +43,12 @@ function Modal({ setOpenModal, coinName, transaction }) {
           >
             Cancel
           </button>
-          {transaction === "Buy" && !loading ? (
-            <BuyButton
-              coinName={coinName}
-              coinAmount={quantity}
-              setLoading={setLoading}
-            />
-          ) : (
-            "Processing"
-          )}
+          {coinProp.transaction === "Buy" ? (
+            <BuyButton coinProp={coinProp} coinAmount={quantity} />
+          ) : null}
+          {coinProp.transaction === "Sell" ? (
+            <SellButton coinProp={coinProp} coinAmount={quantity} />
+          ) : null}
         </div>
       </div>
     </div>

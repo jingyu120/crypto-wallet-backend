@@ -94,6 +94,27 @@ app.post("/addCoin", async (req, res) => {
   }
 });
 
+app.post("/sellCoin", async (req, res) => {
+  const { email, name, amount, cost } = req.body;
+  delete req.body.email;
+
+  try {
+    const user = await UserModel.findOne({ email });
+    const fetchedWallet = user.wallet.filter((u) => u.name === name);
+
+    if (fetchedWallet.length > 0) {
+      fetchedWallet.map((u) => {
+        u.amount -= amount;
+        u.cost -= cost;
+      });
+      await user.save();
+      console.log("updated coin");
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 async function run() {
   try {
     const userEmail = "jingyu120@gmail.com";

@@ -12,6 +12,7 @@ function PortfolioTable() {
     coinSelected: null,
     modalOpen: false,
     transaction: null,
+    coinTotal: null,
   });
 
   const { currentUser } = useContext(AuthContext);
@@ -51,11 +52,7 @@ function PortfolioTable() {
                   <td>{coin.cost.toFixed(2)}</td>
                   <td>
                     {modal.modalOpen && (
-                      <Modal
-                        setOpenModal={setModal}
-                        coinName={modal.coinSelected}
-                        transaction={modal.transaction}
-                      />
+                      <Modal setOpenModal={setModal} coinProp={modal} />
                     )}
                     <button
                       className="openModalBtn buy"
@@ -65,6 +62,7 @@ function PortfolioTable() {
                           modalOpen: true,
                           coinSelected: coin.name,
                           transaction: "Buy",
+                          coinTotal: coin.amount,
                         }))
                       }
                     >
@@ -78,6 +76,7 @@ function PortfolioTable() {
                           modalOpen: true,
                           coinSelected: coin.name,
                           transaction: "Sell",
+                          coinTotal: coin.amount,
                         }))
                       }
                     >

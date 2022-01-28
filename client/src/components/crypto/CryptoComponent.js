@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./CyrptoComponent.css";
-import BuyAmount from "./BuyAmount";
+import BuyAmount from "../transaction/BuyAmount";
 import { AuthContext } from "../../services/authContext";
 import { CryptoContext } from "../../services/cryptoContext";
 
