@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, isLoggedIn, provider } from "./Firebase";
+import { auth, provider } from "./Firebase";
 import "./Login.css";
 
 export default function Login() {
@@ -11,11 +11,7 @@ export default function Login() {
 
   const login = async () => {
     try {
-      const user = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword
-      );
+      await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
       navigate("/");
     } catch (error) {
       alert(error);

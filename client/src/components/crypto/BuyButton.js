@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import { auth } from "../../authentication/Firebase";
 import axios from "axios";
 import { CryptoContext } from "../../services/cryptoContext";
-function BuyButton({ coinName, coinAmount }) {
+function BuyButton({ coinName, coinAmount, setLoading }) {
   const { cryptoId } = useContext(CryptoContext);
   let coinPrice = null;
   const buyCoin = () => {
     try {
+      setLoading(true);
       axios
         .get(`https://api.coinlore.net/api/ticker/?id=${cryptoId[coinName]}`)
         .then((res) => {
@@ -20,6 +21,7 @@ function BuyButton({ coinName, coinAmount }) {
             cost: Number(coinAmount * coinPrice),
           };
           axios.post("http://localhost:3001/addCoin", data);
+          setLoading(false);
         });
     } catch (error) {
       console.log(error.message);

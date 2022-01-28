@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from "react";
 import BuyButton from "../crypto/BuyButton";
 import "./Modal.css";
-import axios from "axios";
 
 function Modal({ setOpenModal, coinName, transaction }) {
   const [quantity, setQuantity] = useState(0);
-  // const [cryptoList, setCryptoList] = useState({});
+  const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("https://api.coinlore.net/api/tickers/?start=0&limit=10")
-  //     .then((response) => {
-  //       setCryptoList(response.data.data);
-  //     });
-  // }, []);
+  useEffect(() => {});
 
   return (
     <div className="modalBackground">
@@ -51,9 +44,15 @@ function Modal({ setOpenModal, coinName, transaction }) {
           >
             Cancel
           </button>
-          {transaction === "Buy" ? (
-            <BuyButton coinName={coinName} coinAmount={quantity} />
-          ) : null}
+          {transaction === "Buy" && !loading ? (
+            <BuyButton
+              coinName={coinName}
+              coinAmount={quantity}
+              setLoading={setLoading}
+            />
+          ) : (
+            "Processing"
+          )}
         </div>
       </div>
     </div>

@@ -28,7 +28,7 @@ function PortfolioTable() {
       });
 
     // eslint-disable-next-line
-  }, []);
+  }, [modal.modalOpen]);
   return (
     <div className="portfolio-table">
       <table>
@@ -48,7 +48,7 @@ function PortfolioTable() {
                 <tr key={coin._id}>
                   <td>{coin.name}</td>
                   <td>{coin.amount}</td>
-                  <td>{coin.cost}</td>
+                  <td>{coin.cost.toFixed(2)}</td>
                   <td>
                     {modal.modalOpen && (
                       <Modal

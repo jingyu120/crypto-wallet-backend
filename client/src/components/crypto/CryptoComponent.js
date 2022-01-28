@@ -5,17 +5,9 @@ import { AuthContext } from "../../services/authContext";
 import { CryptoContext } from "../../services/cryptoContext";
 
 export default function CryptoComponent() {
-  // const [cryptoList, setCryptoList] = useState({});
   const { currentUser } = useContext(AuthContext);
   const { cryptoLists } = useContext(CryptoContext);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("https://api.coinlore.net/api/tickers/?start=0&limit=10")
-  //     .then((response) => {
-  //       setCryptoList(response.data.data);
-  //     });
-  // }, []);
   return (
     <div className="crypto-table">
       <table>

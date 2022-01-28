@@ -4,6 +4,7 @@ import BuyButton from "./BuyButton";
 export default function BuyAmount({ coinCost, coinName }) {
   const [totalCost, setTotalCost] = useState(0);
   const [quantity, setQuantity] = useState(0);
+  const [buyFinish, setBuyFinish] = useState(false);
   useEffect(() => {
     setTotalCost(quantity * coinCost);
   }, [coinCost, quantity]);
@@ -18,7 +19,11 @@ export default function BuyAmount({ coinCost, coinName }) {
               setQuantity(event.target.value);
             }}
           />
-          <BuyButton coinName={coinName} coinAmount={quantity} />
+          <BuyButton
+            coinName={coinName}
+            coinAmount={quantity}
+            setBuyFinish={setBuyFinish}
+          />
         </div>
       </td>
       <td>${totalCost}</td>
