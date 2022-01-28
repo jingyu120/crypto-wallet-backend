@@ -18,12 +18,7 @@ export default function BuyAmount({ coinCost, coinName }) {
               setQuantity(event.target.value);
             }}
           />
-          <BuyButton
-            coinCost={coinCost}
-            coinName={coinName}
-            coinAmount={quantity}
-          />
-          {/* <button onClick={buyCoin}>Buy</button> */}
+          <BuyButton coinName={coinName} coinAmount={quantity} />
         </div>
       </td>
       <td>${totalCost}</td>

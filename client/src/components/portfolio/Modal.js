@@ -5,15 +5,15 @@ import axios from "axios";
 
 function Modal({ setOpenModal, coinName, transaction }) {
   const [quantity, setQuantity] = useState(0);
-  const [cryptoList, setCryptoList] = useState({});
+  // const [cryptoList, setCryptoList] = useState({});
 
-  useEffect(() => {
-    axios
-      .get("https://api.coinlore.net/api/tickers/?start=0&limit=10")
-      .then((response) => {
-        setCryptoList(response.data.data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://api.coinlore.net/api/tickers/?start=0&limit=10")
+  //     .then((response) => {
+  //       setCryptoList(response.data.data);
+  //     });
+  // }, []);
 
   return (
     <div className="modalBackground">
@@ -21,7 +21,10 @@ function Modal({ setOpenModal, coinName, transaction }) {
         <div className="titleCloseBtn">
           <button
             onClick={() => {
-              setOpenModal(false);
+              setOpenModal((prev) => ({
+                ...prev,
+                modalOpen: false,
+              }));
             }}
           >
             X
@@ -38,7 +41,6 @@ function Modal({ setOpenModal, coinName, transaction }) {
               setQuantity(event.target.value);
             }}
           ></input>
-          <input placeholder="Cost"></input>
         </div>
         <div className="footer">
           <button
@@ -49,7 +51,9 @@ function Modal({ setOpenModal, coinName, transaction }) {
           >
             Cancel
           </button>
-          {transaction === "Buy" ? <BuyButton coinName={coinName} /> : null}
+          {transaction === "Buy" ? (
+            <BuyButton coinName={coinName} coinAmount={quantity} />
+          ) : null}
         </div>
       </div>
     </div>

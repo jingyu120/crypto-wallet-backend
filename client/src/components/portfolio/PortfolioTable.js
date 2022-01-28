@@ -8,8 +8,11 @@ import "./PortfolioTable.css";
 
 function PortfolioTable() {
   const [wallet, setWallet] = useState();
-  const [buyModalOpen, setBuyModalOpen] = useState(false);
-  const [sellModalOpen, setSellModalOpen] = useState(false);
+  const [modal, setModal] = useState({
+    coinSelected: null,
+    modalOpen: false,
+    transaction: null,
+  });
 
   const { currentUser } = useContext(AuthContext);
 
@@ -47,33 +50,48 @@ function PortfolioTable() {
                   <td>{coin.amount}</td>
                   <td>{coin.cost}</td>
                   <td>
+                    {modal.modalOpen && (
+                      <Modal
+                        setOpenModal={setModal}
+                        coinName={modal.coinSelected}
+                        transaction={modal.transaction}
+                      />
+                    )}
                     <button
                       className="openModalBtn buy"
-                      onClick={() => setBuyModalOpen(true)}
+                      onClick={() =>
+                        setModal((prev) => ({
+                          ...prev,
+                          modalOpen: true,
+                          coinSelected: coin.name,
+                          transaction: "Buy",
+                        }))
+                      }
                     >
                       Buy
                     </button>
                     <button
                       className="openModalBtn sell"
-                      onClick={() => setSellModalOpen(true)}
+                      onClick={() =>
+                        setModal((prev) => ({
+                          ...prev,
+                          modalOpen: true,
+                          coinSelected: coin.name,
+                          transaction: "Sell",
+                        }))
+                      }
                     >
                       Sell
                     </button>
-                    {buyModalOpen && (
-                      <Modal
-                        setOpenModal={setBuyModalOpen}
-                        coinName={coin.name}
-                        transaction={"Buy"}
-                      />
-                    )}
-                    {sellModalOpen && (
-                      <Modal
-                        setOpenModal={setSellModalOpen}
-                        coinName={coin.name}
-                        transaction={"Sell"}
-                      />
-                    )}
                   </td>
+
+                  {/* {sellModalOpen && (
+                    <Modal
+                      setOpenModal={setSellModalOpen}
+                      coinName={coin.name}
+                      transaction={"Sell"}
+                    />
+                  )} */}
                 </tr>
               );
             })}
