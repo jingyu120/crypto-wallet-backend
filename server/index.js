@@ -58,6 +58,17 @@ app.post("/createUser", async (req, res) => {
   res.json(user);
 });
 
+app.get("/:email/balance", async (req, res) => {
+  try {
+    console.log(req.params.email);
+    const email = req.params.email;
+    const data = await UserModel.findOne({ email });
+    res.json(data.balance);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 app.get("/getCoins", async (req, res) => {
   try {
     const email = req.query.email;

@@ -37,3 +37,8 @@ a {
 .hide {
   opacity: 0 !important;
 }
+
+.rightnav {
+  position: fixed;
+  right: 20px;
+}

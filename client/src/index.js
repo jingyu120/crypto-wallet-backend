@@ -7,13 +7,16 @@ import { store } from "./redux/store";
 import * as serviceWorker from "./serviceWorker";
 import { AuthProvider } from "./services/authContext";
 import { CryptoProvider } from "./services/cryptoContext";
+import { BalanceProvider } from "./services/balanceContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <AuthProvider>
         <CryptoProvider>
-          <App />
+          <BalanceProvider>
+            <App />
+          </BalanceProvider>
         </CryptoProvider>
       </AuthProvider>
     </Provider>

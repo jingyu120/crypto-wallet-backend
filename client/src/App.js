@@ -7,23 +7,31 @@ import Login from "./authentication/Login";
 import { auth } from "./authentication/Firebase";
 import Registration from "./authentication/Registration";
 import { AuthContext } from "./services/authContext";
+import { BalanceContext } from "./services/balanceContext";
+import Balance from "./components/balance/Balance";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
+  const { balance } = useContext(BalanceContext);
 
   return (
     <div className="App">
       <Router>
         <nav>
-          <Link to="/">Home</Link>
-          {currentUser && <Link to="/portfolio">Portfolio</Link>}
-          {currentUser ? (
-            <button onClick={() => auth.signOut()}>
-              Log Out {currentUser.email}
-            </button>
-          ) : (
-            <Link to="/login">Login</Link>
-          )}
+          <div>
+            <Link to="/">Home</Link>
+            {currentUser && <Link to="/portfolio">Portfolio</Link>}
+            {currentUser ? (
+              <button onClick={() => auth.signOut()}>
+                Log Out {currentUser.email}
+              </button>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
+          </div>
+          <div className="rightnav">
+            <Link to="/balance">Current Balance: ${balance} </Link>
+          </div>
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -33,6 +41,7 @@ function App() {
             element={<Portfolio currentUser={currentUser} />}
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/balance" element={<Balance />} />
         </Routes>
       </Router>
     </div>
