@@ -12,15 +12,19 @@ function Balance() {
   const postTransaction = (trsx) => {
     if (trsx === "+") {
       axios
-        .post(`http://localhost:3001/${currentUser.email}/depositCash`)
-        .then(() => {
-          setBalance((prev) => prev - Number(amount));
+        .post(
+          `http://localhost:3001/${currentUser.email}/depositCash/${amount}`
+        )
+        .then((res) => {
+          setBalance(res.data);
         });
     } else if (trsx === "-") {
       axios
-        .post(`http://localhost:3001/${currentUser.email}.withdrawCash`)
-        .then(() => {
-          setBalance((prev) => prev + Number(amount));
+        .post(
+          `http://localhost:3001/${currentUser.email}/withdrawCash/${amount}`
+        )
+        .then((res) => {
+          setBalance(res.data);
         });
     } else {
       alert("invalid transaction method.");
@@ -41,7 +45,6 @@ function Balance() {
   };
   return (
     <div className="balance_input">
-      <h1>Current In wallet is ${balance}</h1>
       <label>Amount</label>
       <input
         placeholder="Amount in USD"

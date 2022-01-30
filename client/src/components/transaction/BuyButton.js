@@ -1,9 +1,12 @@
 import React, { useContext, useState } from "react";
-import { auth } from "../../authentication/Firebase";
 import axios from "axios";
 import { CryptoContext } from "../../services/cryptoContext";
+import { BalanceContext } from "../../services/balanceContext";
+import { AuthContext } from "../../services/authContext";
 function BuyButton({ coinProp, coinAmount }) {
   const { cryptoId } = useContext(CryptoContext);
+  const { balance, setBalance } = useContext(BalanceContext);
+  const { currentUser } = useContext(AuthContext);
   const [processing, setProcessing] = useState(false);
 
   let coinPrice = null;
@@ -21,12 +24,21 @@ function BuyButton({ coinProp, coinAmount }) {
         })
         .then(() => {
           const data = {
-            email: auth.currentUser.email,
             name: coinProp.coinSelected,
             amount: Number(coinAmount),
             cost: Number(coinAmount * coinPrice),
           };
-          axios.post("http://localhost:3001/addCoin", data);
+          if (balance >= data.cost) {
+            axios
+              .post(`http://localhost:3001/${currentUser.email}/addCoin`, data)
+              .then((res) => {
+                setBalance(res.data);
+                console.log(balance);
+              });
+          } else {
+            alert("not enough balance");
+          }
+
           setProcessing(false);
         });
     } catch (error) {

@@ -13,7 +13,7 @@ export const BalanceProvider = ({ children }) => {
       .then((res) => {
         setBalance(res.data);
       });
-  }, []);
+  }, [currentUser.email]);
 
   return (
     <BalanceContext.Provider

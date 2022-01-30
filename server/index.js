@@ -68,9 +68,33 @@ app.get("/:email/balance", async (req, res) => {
   }
 });
 
-app.post("/:email/depositCash", async (req, res) => {
+app.post("/:email/depositCash/:amount", async (req, res) => {
   try {
     const email = req.params.email;
+    try {
+      const user = await UserModel.findOne({ email });
+      user.balance += Number(req.params.amount);
+      user.save();
+      res.json(user.balance);
+    } catch (error) {
+      console.log(error.message);
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+app.post("/:email/withdrawCash/:amount", async (req, res) => {
+  try {
+    const email = req.params.email;
+    try {
+      const user = await UserModel.findOne({ email });
+      user.balance -= Number(req.params.amount);
+      user.save();
+      res.json(user.balance);
+    } catch (error) {
+      console.log(error.message);
+    }
   } catch (error) {
     console.log(error.message);
   }
@@ -86,10 +110,9 @@ app.get("/getCoins", async (req, res) => {
   }
 });
 
-app.post("/addCoin", async (req, res) => {
-  const { email, name, amount, cost } = req.body;
-  delete req.body.email;
-
+app.post("/:email/addCoin", async (req, res) => {
+  const { name, amount, cost } = req.body;
+  const email = req.params.email;
   try {
     const user = await UserModel.findOne({ email });
     const fetchedWallet = user.wallet.filter((u) => u.name === name);
@@ -99,14 +122,17 @@ app.post("/addCoin", async (req, res) => {
         u.amount += amount;
         u.cost += cost;
       });
+      user.balance -= cost;
       await user.save();
       console.log("updated coin");
     } else {
       const newCoin = new CryptoModel(req.body);
       user.wallet.push(newCoin);
+      user.balance -= cost;
       await user.save();
       console.log("added new coin");
     }
+    res.json(user.balance);
   } catch (error) {
     console.log(error.message);
   }
