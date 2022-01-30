@@ -138,9 +138,9 @@ app.post("/:email/addCoin", async (req, res) => {
   }
 });
 
-app.post("/sellCoin", async (req, res) => {
-  const { email, name, amount, cost } = req.body;
-  delete req.body.email;
+app.post("/:email/sellCoin", async (req, res) => {
+  const { name, amount, cost } = req.body;
+  const email = req.params.email;
 
   try {
     const user = await UserModel.findOne({ email });
@@ -151,7 +151,9 @@ app.post("/sellCoin", async (req, res) => {
         u.amount -= amount;
         u.cost -= cost;
       });
+      user.balance -= cost;
       await user.save();
+      res.json(user.balance);
       console.log("updated coin");
     }
   } catch (error) {

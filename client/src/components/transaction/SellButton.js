@@ -1,9 +1,12 @@
 import React, { useContext, useState } from "react";
-import { auth } from "../../authentication/Firebase";
 import axios from "axios";
 import { CryptoContext } from "../../services/cryptoContext";
+import { AuthContext } from "../../services/authContext";
+import { BalanceContext } from "../../services/balanceContext";
 function SellButton({ coinProp, coinAmount }) {
   const { cryptoId } = useContext(CryptoContext);
+  const { currentUser } = useContext(AuthContext);
+  const { setBalance } = useContext(BalanceContext);
   const [processing, setProcessing] = useState(false);
 
   let coinPrice = null;
@@ -24,12 +27,13 @@ function SellButton({ coinProp, coinAmount }) {
           })
           .then(() => {
             const data = {
-              email: auth.currentUser.email,
               name: coinProp.coinSelected,
               amount: Number(coinAmount),
               cost: Number(coinAmount * coinPrice),
             };
-            axios.post("http://localhost:3001/sellCoin", data);
+            axios
+              .post(`http://localhost:3001/${currentUser.email}/sellCoin`, data)
+              .then((res) => setBalance(res.data));
             setProcessing(false);
           });
       } catch (error) {

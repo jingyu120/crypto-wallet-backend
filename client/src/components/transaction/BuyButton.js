@@ -33,7 +33,6 @@ function BuyButton({ coinProp, coinAmount }) {
               .post(`http://localhost:3001/${currentUser.email}/addCoin`, data)
               .then((res) => {
                 setBalance(res.data);
-                console.log(balance);
               });
           } else {
             alert("not enough balance");
