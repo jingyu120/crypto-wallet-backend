@@ -19,6 +19,7 @@ export const BalanceProvider = ({ children }) => {
     <BalanceContext.Provider
       value={{
         balance,
+        setBalance,
       }}
     >
       {children}

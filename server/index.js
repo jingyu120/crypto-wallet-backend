@@ -60,10 +60,17 @@ app.post("/createUser", async (req, res) => {
 
 app.get("/:email/balance", async (req, res) => {
   try {
-    console.log(req.params.email);
     const email = req.params.email;
     const data = await UserModel.findOne({ email });
     res.json(data.balance);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+app.post("/:email/depositCash", async (req, res) => {
+  try {
+    const email = req.params.email;
   } catch (error) {
     console.log(error.message);
   }
