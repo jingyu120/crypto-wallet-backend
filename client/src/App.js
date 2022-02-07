@@ -30,9 +30,11 @@ function App() {
             )}
           </div>
           <div className="rightnav">
-            <Link to="/balance">
-              Current Balance: ${Number(balance).toFixed(2)}{" "}
-            </Link>
+            {currentUser && (
+              <Link to="/balance">
+                Current Balance: ${Number(balance).toFixed(2)}{" "}
+              </Link>
+            )}
           </div>
         </nav>
         <Routes>

@@ -1,7 +1,6 @@
 .loginPage {
   display: flex;
   flex-direction: column;
-  background: purple;
   align-items: center;
   padding: 18px;
 }
@@ -9,10 +8,11 @@
 .input-fields {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 20px;
 }
 
 .input-fields input {
+  margin: 5px;
 }
 
 .sign-in-btns {
