@@ -7,7 +7,12 @@
 }
 
 .input-fields {
+  display: flex;
+  flex-direction: column;
   padding: 10px;
+}
+
+.input-fields input {
 }
 
 .sign-in-btns {

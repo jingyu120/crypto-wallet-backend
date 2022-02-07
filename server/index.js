@@ -110,6 +110,16 @@ app.get("/getCoins", async (req, res) => {
   }
 });
 
+app.get("/:email/networth", async (req, res) => {
+  try {
+    const email = req.params.email;
+    const user = await UserModel.findOne({ email });
+    console.log(user.wallet);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 app.post("/:email/addCoin", async (req, res) => {
   const { name, amount, cost } = req.body;
   const email = req.params.email;

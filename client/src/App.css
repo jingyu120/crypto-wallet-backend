@@ -42,3 +42,7 @@ a {
   position: fixed;
   right: 20px;
 }
+
+.rightnav a {
+  font-size: medium;
+}

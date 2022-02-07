@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { auth } from "./Firebase";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./Registration.css";
 
 export default function Registration() {
   const [name, setName] = useState();
@@ -28,7 +29,7 @@ export default function Registration() {
     <div className="form">
       <h1>Registration</h1>
 
-      <label>Name</label>
+      <span className="details">Full Name</span>
       <input
         type="text"
         placeholder="Enter name"
@@ -37,7 +38,7 @@ export default function Registration() {
         }}
         required
       />
-      <label>Email</label>
+      <span className="details">Email</span>
       <input
         type="email"
         placeholder="Enter email"
@@ -46,7 +47,7 @@ export default function Registration() {
         }}
         required
       />
-      <label>Password</label>
+      <span className="details">Password</span>
       <input
         type="password"
         placeholder="Enter password"
@@ -55,7 +56,7 @@ export default function Registration() {
         }}
         required
       />
-      <label>Birthday</label>
+      <span className="details">Birthday</span>
       <input
         type="date"
         placeholder="Enter birthday"
@@ -64,7 +65,7 @@ export default function Registration() {
         }}
         required
       />
-      <label>Gender</label>
+      <span className="details">Gender</span>
       <select
         value={gender}
         onChange={(event) => {

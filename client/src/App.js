@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import React, { useContext } from "react";
-import Home from "./components/Home";
+import Home from "./components/home/Home";
 import Portfolio from "./components/portfolio/Portfolio";
 import Login from "./authentication/Login";
 import { auth } from "./authentication/Firebase";

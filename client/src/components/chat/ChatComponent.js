@@ -9,7 +9,7 @@ const socket = io.connect("http://localhost:3001");
 export default function ChatComponent() {
   const [showChat, setShowChat] = useState(false);
   const [username, setUsername] = useState("");
-  const [room, setRoom] = useState("");
+  const [room, setRoom] = useState("general");
 
   const joinRoom = () => {
     if (username !== "" && room !== "") {
@@ -22,7 +22,7 @@ export default function ChatComponent() {
     <div className="chat-container">
       {!showChat ? (
         <JoinChat
-          setShowChat={setShowChat}
+          room={room}
           setUsername={setUsername}
           setRoom={setRoom}
           joinRoom={joinRoom}

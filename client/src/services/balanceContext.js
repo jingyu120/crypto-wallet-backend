@@ -8,12 +8,14 @@ export const BalanceProvider = ({ children }) => {
   const [balance, setBalance] = useState(null);
   const { currentUser } = useContext(AuthContext);
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/${currentUser.email}/balance`)
-      .then((res) => {
-        setBalance(res.data);
-      });
-  }, [currentUser.email]);
+    if (currentUser) {
+      axios
+        .get(`http://localhost:3001/${currentUser.email}/balance`)
+        .then((res) => {
+          setBalance(res.data);
+        });
+    }
+  }, [currentUser]);
 
   return (
     <BalanceContext.Provider

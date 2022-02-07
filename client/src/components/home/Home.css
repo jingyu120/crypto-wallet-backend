@@ -1,0 +1,6 @@
+.chat-toggle {
+  position: fixed;
+  top: 80px;
+  right: 50px;
+  z-index: 10;
+}

@@ -2,3 +2,9 @@
   display: flex;
   flex-direction: column;
 }
+.balance_input label {
+  font-size: xx-large;
+}
+
+.balance_input input {
+}
