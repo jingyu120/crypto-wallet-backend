@@ -3,6 +3,7 @@ import axios from "axios";
 import { CryptoContext } from "../../services/cryptoContext";
 import { BalanceContext } from "../../services/balanceContext";
 import { AuthContext } from "../../services/authContext";
+import "./BuyButton.css";
 function BuyButton({ coinProp, coinAmount }) {
   const { cryptoId } = useContext(CryptoContext);
   const { balance, setBalance } = useContext(BalanceContext);
@@ -46,7 +47,11 @@ function BuyButton({ coinProp, coinAmount }) {
   };
 
   if (!processing) {
-    return <button onClick={buyCoin}>Buy</button>;
+    return (
+      <button className="buy-button" onClick={buyCoin}>
+        Buy
+      </button>
+    );
   } else {
     return <>Processing</>;
   }

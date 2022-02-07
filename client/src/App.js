@@ -22,7 +22,7 @@ function App() {
             <Link to="/">Home</Link>
             {currentUser && <Link to="/portfolio">Portfolio</Link>}
             {currentUser ? (
-              <button onClick={() => auth.signOut()}>
+              <button className="logout-btn" onClick={() => auth.signOut()}>
                 Log Out {currentUser.email}
               </button>
             ) : (

@@ -12,7 +12,7 @@ export default function Portfolio({ currentUser }) {
     }
     axios.get(`http://localhost:3001/${currentUser.email}/networth`);
     // eslint-disable-next-line
-  }, []);
+  }, [currentUser]);
   return (
     <div>
       <h1> Portfolio Networth: </h1>

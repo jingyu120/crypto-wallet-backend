@@ -46,3 +46,7 @@ a {
 .rightnav a {
   font-size: medium;
 }
+
+.logout-btn {
+  background-color: black;
+}
