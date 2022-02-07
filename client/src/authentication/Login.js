@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth, provider } from "./Firebase";
 import "./Login.css";
 
@@ -35,19 +35,27 @@ export default function Login() {
           onChange={(event) => setLoginPassword(event.target.value)}
         ></input>
       </div>
-      <div className="sign-in-btns">
-        <button onClick={login}>Login</button>
-        <button className="login-with-google-btn" onClick={signInWithGoogle}>
+      <div>
+        <button className="sign-in" onClick={login}>
+          Login
+        </button>
+        <button className="google-sign-in" onClick={signInWithGoogle}>
           Sign in with Google
         </button>
       </div>
-      <button
+      <div>
+        <span className="register">
+          Not registered? <Link to={"/registration"}>Create an account</Link>
+        </span>
+      </div>
+      {/* <button
+        className="register"
         onClick={() => {
           navigate("/registration");
         }}
       >
         Registration
-      </button>
+      </button> */}
     </div>
   );
 }
