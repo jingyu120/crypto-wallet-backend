@@ -1,6 +1,7 @@
 .App {
   width: 100vw;
-  height: 100vh;
+  height: auto !important;
+
   background: #eefbfb;
   color: #212121;
   font-family: "Open Sans", sans-serif;
