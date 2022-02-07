@@ -28,54 +28,67 @@ export default function Registration() {
   return (
     <div className="form">
       <h1>Registration</h1>
-
-      <span className="details">Full Name</span>
-      <input
-        type="text"
-        placeholder="Enter name"
-        onChange={(event) => {
-          setName(event.target.value);
-        }}
-        required
-      />
-      <span className="details">Email</span>
-      <input
-        type="email"
-        placeholder="Enter email"
-        onChange={(event) => {
-          setEmail(event.target.value);
-        }}
-        required
-      />
-      <span className="details">Password</span>
-      <input
-        type="password"
-        placeholder="Enter password"
-        onChange={(event) => {
-          setPassword(event.target.value);
-        }}
-        required
-      />
-      <span className="details">Birthday</span>
-      <input
-        type="date"
-        placeholder="Enter birthday"
-        onChange={(event) => {
-          setBirthday(event.target.value);
-        }}
-        required
-      />
-      <span className="details">Gender</span>
-      <select
-        value={gender}
-        onChange={(event) => {
-          setGender(event.target.value);
-        }}
-      >
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-      </select>
-      <button onClick={submitForm}>Submit</button>
+      <div>
+        <span className="details">Full Name</span>
+        <input
+          type="text"
+          placeholder="Enter name"
+          onChange={(event) => {
+            setName(event.target.value);
+          }}
+          required
+        />
+      </div>
+      <div>
+        <span className="details">Email</span>
+        <input
+          type="email"
+          placeholder="Enter email"
+          onChange={(event) => {
+            setEmail(event.target.value);
+          }}
+          required
+        />
+      </div>
+      <div>
+        <span className="details">Password</span>
+        <input
+          type="password"
+          placeholder="Enter password"
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+          required
+        />
+      </div>
+      <div>
+        <span className="details">Birthday</span>
+        <input
+          type="date"
+          placeholder="Enter birthday"
+          onChange={(event) => {
+            setBirthday(event.target.value);
+          }}
+          required
+        />
+      </div>
+      <div>
+        <span className="details">Gender</span>
+        <select
+          value={gender}
+          onChange={(event) => {
+            setGender(event.target.value);
+          }}
+        >
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+      <div>
+        <button className="registration-submit" onClick={submitForm}>
+          Submit
+        </button>
+      </div>
     </div>
   );
 }
