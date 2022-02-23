@@ -19,7 +19,7 @@ function PortfolioTable() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/getCoins", {
+      .get("http://localhost:3001/api/user/getCoins", {
         params: {
           email: currentUser.email,
         },

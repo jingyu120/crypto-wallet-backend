@@ -32,7 +32,7 @@ function SellButton({ coinProp, coinAmount }) {
               cost: Number(coinAmount * coinPrice),
             };
             axios
-              .post(`http://localhost:3001/${currentUser.email}/sellCoin`, data)
+              .post(`http://localhost:3001/api/user/${currentUser.email}/sellCoin`, data)
               .then((res) => setBalance(res.data));
             setProcessing(false);
           });

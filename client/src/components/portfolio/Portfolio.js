@@ -9,8 +9,9 @@ export default function Portfolio({ currentUser }) {
   useEffect(() => {
     if (!currentUser) {
       navigate("/login");
+    } else {
+      axios.get(`http://localhost:3001/api/user/${currentUser.email}/networth`);
     }
-    axios.get(`http://localhost:3001/${currentUser.email}/networth`);
     // eslint-disable-next-line
   }, [currentUser]);
   return (

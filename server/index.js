@@ -3,12 +3,13 @@ const http = require("http");
 const cors = require("cors");
 const { Server } = require("socket.io");
 const mongoose = require("mongoose");
-const UserModel = require("./models/Users");
-const CryptoModel = require("./models/Crypto");
+const cryptoRoutes = require("./routes/cryptoRoutes");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+app.use("/api/user", cryptoRoutes);
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -38,155 +39,6 @@ io.on("connection", (socket) => {
 mongoose.connect(
   "mongodb+srv://jingyu120:Password123@cluster0.9w51a.mongodb.net/react-chat?retryWrites=true&w=majority"
 );
-
-app.get("/getUsers", (req, res) => {
-  UserModel.find({}, (err, result) => {
-    if (err) {
-      res.json(err);
-    } else {
-      res.json(result);
-    }
-  });
-});
-
-app.post("/createUser", async (req, res) => {
-  const user = req.body;
-  console.log(user);
-  const newUser = new UserModel(user);
-  await newUser.save();
-
-  res.json(user);
-});
-
-app.get("/:email/balance", async (req, res) => {
-  try {
-    const email = req.params.email;
-    const data = await UserModel.findOne({ email });
-    res.json(data.balance);
-  } catch (error) {
-    console.log(error.message);
-  }
-});
-
-app.post("/:email/depositCash/:amount", async (req, res) => {
-  try {
-    const email = req.params.email;
-    try {
-      const user = await UserModel.findOne({ email });
-      user.balance += Number(req.params.amount);
-      user.save();
-      res.json(user.balance);
-    } catch (error) {
-      console.log(error.message);
-    }
-  } catch (error) {
-    console.log(error.message);
-  }
-});
-
-app.post("/:email/withdrawCash/:amount", async (req, res) => {
-  try {
-    const email = req.params.email;
-    try {
-      const user = await UserModel.findOne({ email });
-      user.balance -= Number(req.params.amount);
-      user.save();
-      res.json(user.balance);
-    } catch (error) {
-      console.log(error.message);
-    }
-  } catch (error) {
-    console.log(error.message);
-  }
-});
-
-app.get("/getCoins", async (req, res) => {
-  try {
-    const email = req.query.email;
-    const data = await UserModel.findOne({ email });
-    res.json(data.wallet);
-  } catch (error) {
-    console.log(error.message);
-  }
-});
-
-app.get("/:email/networth", async (req, res) => {
-  try {
-    const email = req.params.email;
-    const user = await UserModel.findOne({ email });
-    console.log(user.wallet);
-  } catch (error) {
-    console.log(error.message);
-  }
-});
-
-app.post("/:email/addCoin", async (req, res) => {
-  const { name, amount, cost } = req.body;
-  const email = req.params.email;
-  try {
-    const user = await UserModel.findOne({ email });
-    const fetchedWallet = user.wallet.filter((u) => u.name === name);
-
-    if (fetchedWallet.length > 0) {
-      fetchedWallet.map((u) => {
-        u.amount += amount;
-        u.cost += cost;
-      });
-      user.balance -= cost;
-      await user.save();
-      console.log("updated coin");
-    } else {
-      const newCoin = new CryptoModel(req.body);
-      user.wallet.push(newCoin);
-      user.balance -= cost;
-      await user.save();
-      console.log("added new coin");
-    }
-    res.json(user.balance);
-  } catch (error) {
-    console.log(error.message);
-  }
-});
-
-app.post("/:email/sellCoin", async (req, res) => {
-  const { name, amount, cost } = req.body;
-  const email = req.params.email;
-
-  try {
-    const user = await UserModel.findOne({ email });
-    const fetchedWallet = user.wallet.filter((u) => u.name === name);
-
-    if (fetchedWallet.length > 0) {
-      fetchedWallet.map((u) => {
-        u.amount -= amount;
-        u.cost -= cost;
-      });
-      user.balance -= cost;
-      await user.save();
-      res.json(user.balance);
-      console.log("updated coin");
-    }
-  } catch (error) {
-    console.log(error.message);
-  }
-});
-
-async function run() {
-  try {
-    const userEmail = "jingyu120@gmail.com";
-    const newCoin = new CryptoModel({ name: "LTC", amount: 1, cost: 500 });
-    const user = await UserModel.findOne({ email: userEmail });
-
-    console.log(user.wallet);
-    user.wallet = [];
-
-    await user.save();
-    console.log(user.wallet);
-  } catch (e) {
-    console.log(e.message);
-  }
-}
-// run();
 
 server.listen(3001, () => {
   console.log("Server running");

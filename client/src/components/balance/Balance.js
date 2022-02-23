@@ -13,7 +13,7 @@ function Balance() {
     if (trsx === "+") {
       axios
         .post(
-          `http://localhost:3001/${currentUser.email}/depositCash/${amount}`
+          `http://localhost:3001/api/user/${currentUser.email}/depositCash/${amount}`
         )
         .then((res) => {
           setBalance(res.data);
@@ -21,7 +21,7 @@ function Balance() {
     } else if (trsx === "-") {
       axios
         .post(
-          `http://localhost:3001/${currentUser.email}/withdrawCash/${amount}`
+          `http://localhost:3001/api/user/${currentUser.email}/withdrawCash/${amount}`
         )
         .then((res) => {
           setBalance(res.data);

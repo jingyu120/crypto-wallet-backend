@@ -10,7 +10,7 @@ export const BalanceProvider = ({ children }) => {
   useEffect(() => {
     if (currentUser) {
       axios
-        .get(`http://localhost:3001/${currentUser.email}/balance`)
+        .get(`http://localhost:3001/api/user/${currentUser.email}/balance`)
         .then((res) => {
           setBalance(res.data);
         });
