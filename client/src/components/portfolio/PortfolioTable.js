@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../services/authContext";
-// import BuyButton from "../crypto/BuyButton";
-// import BuyAmount from "../crypto/BuyAmount";
 import Modal from "./Modal";
 import "./PortfolioTable.css";
 
@@ -83,14 +81,6 @@ function PortfolioTable() {
                       Sell
                     </button>
                   </td>
-
-                  {/* {sellModalOpen && (
-                    <Modal
-                      setOpenModal={setSellModalOpen}
-                      coinName={coin.name}
-                      transaction={"Sell"}
-                    />
-                  )} */}
                 </tr>
               );
             })}

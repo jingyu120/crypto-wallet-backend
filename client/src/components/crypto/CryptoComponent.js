@@ -29,6 +29,7 @@ export default function CryptoComponent() {
           <tbody>
             {cryptoLists.length > 0 &&
               cryptoLists.map((coin) => {
+                console.log(coin);
                 return (
                   <tr key={coin.id}>
                     <td>{coin.symbol}</td>
