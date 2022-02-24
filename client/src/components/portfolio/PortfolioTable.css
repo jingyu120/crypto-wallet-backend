@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
-.App {
+.portfolio-table {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -8,7 +7,7 @@
   font-family: "Nunito", sans-serif;
 }
 
-.App .openModalBtn {
+.portfolio-table .openModalBtn {
   width: 100px;
   height: 40px;
   border: none;
@@ -23,8 +22,4 @@
 }
 .sell {
   background-color: red;
-}
-body {
-  padding: 0;
-  margin: 0;
 }
