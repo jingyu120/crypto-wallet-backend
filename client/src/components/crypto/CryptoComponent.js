@@ -1,12 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./CyrptoComponent.css";
 import BuyAmount from "../transaction/BuyAmount";
 import { AuthContext } from "../../services/authContext";
-import { CryptoContext } from "../../services/cryptoContext";
+import { useDispatch, useSelector } from "react-redux";
+import { getCryptoList } from "../../redux/cryptoSlice";
 
 export default function CryptoComponent() {
   const { currentUser } = useContext(AuthContext);
-  const { cryptoLists } = useContext(CryptoContext);
+  const { cryptoList } = useSelector((state) => state.crypto);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCryptoList());
+  });
 
   return (
     <>
@@ -27,9 +33,8 @@ export default function CryptoComponent() {
             </tr>
           </thead>
           <tbody>
-            {cryptoLists.length > 0 &&
-              cryptoLists.map((coin) => {
-                console.log(coin);
+            {cryptoList.length > 0 &&
+              cryptoList.map((coin) => {
                 return (
                   <tr key={coin.id}>
                     <td>{coin.symbol}</td>

@@ -13,6 +13,7 @@ function BuyButton({ coinProp, coinAmount }) {
   const { currentUser } = useContext(AuthContext);
   const [processing, setProcessing] = useState(false);
 
+  // const coinId = cryptoList.filter(c => c.)
   let coinPrice = null;
   const buyCoin = () => {
     try {

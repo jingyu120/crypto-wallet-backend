@@ -21,7 +21,7 @@ function App() {
     axios
       .get(`http://localhost:3001/api/user/${currentUser.email}/balance`)
       .then((res) => dispatch(setBalance(res.data)));
-  });
+  }, []);
 
   return (
     <div className="App">
