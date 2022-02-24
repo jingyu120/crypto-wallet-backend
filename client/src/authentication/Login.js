@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, provider } from "./Firebase";
 import "./Login.css";
+import axios from "axios";
 
 export default function Login() {
   const [loginEmail, setLoginEmail] = useState("");
@@ -11,7 +12,12 @@ export default function Login() {
 
   const login = async () => {
     try {
-      await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      const user = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword
+      );
+      console.log(user);
       navigate("/");
     } catch (error) {
       alert(error);
@@ -19,7 +25,19 @@ export default function Login() {
   };
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
-      navigate("/");
+      const data = {
+        name: result.user.displayName,
+        email: result.user.email,
+      };
+      axios
+        .post("http://localhost:3001/api/user/google_sign_in", data)
+        .then((res) => {
+          if (res.status === 200) {
+            navigate("/");
+          } else {
+            alert("Server error, please try again later");
+          }
+        });
     });
   };
 

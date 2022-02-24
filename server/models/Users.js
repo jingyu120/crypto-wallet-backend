@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const CryptoSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -24,7 +23,7 @@ const UserSchema = new mongoose.Schema({
   },
   birthday: {
     type: String,
-    required: true,
+    default: "NA",
   },
   email: {
     type: String,
@@ -33,7 +32,7 @@ const UserSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    required: true,
+    default: "NA",
   },
   balance: {
     type: Number,

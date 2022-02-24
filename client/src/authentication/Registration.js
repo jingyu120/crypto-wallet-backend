@@ -18,8 +18,15 @@ export default function Registration() {
       console.log(email, password);
       await createUserWithEmailAndPassword(auth, email, password);
       const data = { name, email, birthday, gender };
-      axios.post("http://localhost:3001/createUser", data);
-      navigate("/login");
+      axios
+        .post("http://localhost:3001/api/user/createUser", data)
+        .then((res) => {
+          if (res.status === 200) {
+            navigate("/");
+          } else {
+            alert("Server error when creating user.");
+          }
+        });
     } catch (error) {
       alert(error);
     }
