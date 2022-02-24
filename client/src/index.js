@@ -3,19 +3,24 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-
 import * as serviceWorker from "./serviceWorker";
 import { AuthProvider } from "./services/authContext";
 import { CryptoProvider } from "./services/cryptoContext";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+
+let persistor = persistStore(store);
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <AuthProvider>
-        <CryptoProvider>
-          <App />
-        </CryptoProvider>
-      </AuthProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <AuthProvider>
+          <CryptoProvider>
+            <App />
+          </CryptoProvider>
+        </AuthProvider>
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
