@@ -1,12 +1,15 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../services/authContext";
-import { BalanceContext } from "../../services/balanceContext";
 import "./Balance.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setBalance } from "../../redux/cryptoSlice";
+
 function Balance() {
   const [amount, setAmount] = useState(null);
   const [transaction, setTransaction] = useState("+");
-  let { balance, setBalance } = useContext(BalanceContext);
+  const { balance } = useSelector((state) => state.crypto);
+  const dispatch = useDispatch();
   const { currentUser } = useContext(AuthContext);
 
   const postTransaction = (trsx) => {
@@ -17,7 +20,7 @@ function Balance() {
         )
         .then((res) => {
           if (res.status === 200) {
-            setBalance(res.data);
+            dispatch(setBalance(res.data));
             alert("Deposit Successful");
           } else {
             alert("Deposit Unsuccessful");
@@ -30,7 +33,7 @@ function Balance() {
         )
         .then((res) => {
           if (res.status === 200) {
-            setBalance(res.data);
+            dispatch(setBalance(res.data));
             alert("Withdraw Successful");
           } else {
             alert("Withdraw Unsuccessful");

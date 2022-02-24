@@ -1,18 +1,27 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Home from "./components/home/Home";
 import Portfolio from "./components/portfolio/Portfolio";
 import Login from "./authentication/Login";
 import { auth } from "./authentication/Firebase";
 import Registration from "./authentication/Registration";
 import { AuthContext } from "./services/authContext";
-import { BalanceContext } from "./services/balanceContext";
 import Balance from "./components/balance/Balance";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { setBalance } from "./redux/cryptoSlice";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
-  const { balance } = useContext(BalanceContext);
+  const { balance } = useSelector((state) => state.crypto);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/api/user/${currentUser.email}/balance`)
+      .then((res) => dispatch(setBalance(res.data)));
+  });
 
   return (
     <div className="App">

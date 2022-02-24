@@ -1,12 +1,15 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import { CryptoContext } from "../../services/cryptoContext";
-import { BalanceContext } from "../../services/balanceContext";
 import { AuthContext } from "../../services/authContext";
 import "./BuyButton.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setBalance } from "../../redux/cryptoSlice";
+
 function BuyButton({ coinProp, coinAmount }) {
   const { cryptoId } = useContext(CryptoContext);
-  const { balance, setBalance } = useContext(BalanceContext);
+  const { balance } = useSelector((state) => state.crypto);
+  const dispatch = useDispatch();
   const { currentUser } = useContext(AuthContext);
   const [processing, setProcessing] = useState(false);
 
@@ -31,9 +34,12 @@ function BuyButton({ coinProp, coinAmount }) {
           };
           if (balance >= data.cost) {
             axios
-              .post(`http://localhost:3001/api/user/${currentUser.email}/addCoin`, data)
+              .post(
+                `http://localhost:3001/api/user/${currentUser.email}/addCoin`,
+                data
+              )
               .then((res) => {
-                setBalance(res.data);
+                dispatch(setBalance(res.data));
               });
           } else {
             alert("not enough balance");
