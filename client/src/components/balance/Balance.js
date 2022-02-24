@@ -16,7 +16,12 @@ function Balance() {
           `http://localhost:3001/api/user/${currentUser.email}/depositCash/${amount}`
         )
         .then((res) => {
-          setBalance(res.data);
+          if (res.status === 200) {
+            setBalance(res.data);
+            alert("Deposit Successful");
+          } else {
+            alert("Deposit Unsuccessful");
+          }
         });
     } else if (trsx === "-") {
       axios
@@ -24,7 +29,12 @@ function Balance() {
           `http://localhost:3001/api/user/${currentUser.email}/withdrawCash/${amount}`
         )
         .then((res) => {
-          setBalance(res.data);
+          if (res.status === 200) {
+            setBalance(res.data);
+            alert("Withdraw Successful");
+          } else {
+            alert("Withdraw Unsuccessful");
+          }
         });
     } else {
       alert("invalid transaction method.");
@@ -48,6 +58,7 @@ function Balance() {
       <label>Amount</label>
       <input
         placeholder="Amount in USD"
+        type="number"
         onChange={(event) => setAmount(event.target.value)}
       ></input>
       <select
