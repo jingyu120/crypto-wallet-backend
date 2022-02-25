@@ -1,29 +1,24 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
-import { CryptoContext } from "../../services/cryptoContext";
 import { AuthContext } from "../../services/authContext";
 import "./BuyButton.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setBalance } from "../../redux/cryptoSlice";
 
 function BuyButton({ coinProp, coinAmount }) {
-  const { cryptoId } = useContext(CryptoContext);
-  const { balance } = useSelector((state) => state.crypto);
+  const { balance, cryptoList } = useSelector((state) => state.crypto);
   const dispatch = useDispatch();
   const { currentUser } = useContext(AuthContext);
   const [processing, setProcessing] = useState(false);
 
-  // const coinId = cryptoList.filter(c => c.)
+  const coinId = cryptoList.filter((c) => c.symbol === coinProp.coinSelected)[0]
+    .id;
   let coinPrice = null;
   const buyCoin = () => {
     try {
       setProcessing(true);
       axios
-        .get(
-          `https://api.coinlore.net/api/ticker/?id=${
-            cryptoId[coinProp.coinSelected]
-          }`
-        )
+        .get(`https://api.coinlore.net/api/ticker/?id=${coinId}`)
         .then((res) => {
           coinPrice = res.data[0].price_usd;
         })

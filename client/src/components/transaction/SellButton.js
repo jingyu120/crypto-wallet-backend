@@ -1,15 +1,17 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
-import { CryptoContext } from "../../services/cryptoContext";
 import { AuthContext } from "../../services/authContext";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setBalance } from "../../redux/cryptoSlice";
 
 function SellButton({ coinProp, coinAmount }) {
-  const { cryptoId } = useContext(CryptoContext);
   const { currentUser } = useContext(AuthContext);
+  const { cryptoList } = useSelector((state) => state.crypto);
   const dispatch = useDispatch();
   const [processing, setProcessing] = useState(false);
+  const cryptoId = cryptoList.filter(
+    (c) => c.symbol === coinProp.coinSelected
+  )[0].id;
 
   let coinPrice = null;
   const sellCoin = () => {
@@ -19,11 +21,7 @@ function SellButton({ coinProp, coinAmount }) {
       try {
         setProcessing(true);
         axios
-          .get(
-            `https://api.coinlore.net/api/ticker/?id=${
-              cryptoId[coinProp.coinSelected]
-            }`
-          )
+          .get(`https://api.coinlore.net/api/ticker/?id=${cryptoId}`)
           .then((res) => {
             coinPrice = res.data[0].price_usd;
           })

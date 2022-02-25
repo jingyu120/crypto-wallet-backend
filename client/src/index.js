@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import * as serviceWorker from "./serviceWorker";
 import { AuthProvider } from "./services/authContext";
-import { CryptoProvider } from "./services/cryptoContext";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 
@@ -16,9 +15,7 @@ ReactDOM.render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <AuthProvider>
-          <CryptoProvider>
-            <App />
-          </CryptoProvider>
+          <App />
         </AuthProvider>
       </PersistGate>
     </Provider>

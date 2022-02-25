@@ -12,7 +12,7 @@ export default function CryptoComponent() {
 
   useEffect(() => {
     dispatch(getCryptoList());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
