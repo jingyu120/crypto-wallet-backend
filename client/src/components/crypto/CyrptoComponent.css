@@ -7,6 +7,7 @@
 }
 .crypto-table table {
   border-collapse: collapse;
+  overflow-x: scroll;
 }
 .crypto-table thead {
   background: pink;
@@ -20,9 +21,9 @@
 }
 
 .crypto-table thead th {
-  padding: 10px 20px;
+  padding: 10px 5px;
 }
 
 .crypto-table tbody td {
-  padding: 5px 20px;
+  padding: 5px 5px;
 }

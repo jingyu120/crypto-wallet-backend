@@ -18,16 +18,18 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/user/${currentUser.email}/balance`)
-      .then((res) => dispatch(setBalance(res.data)));
+    currentUser &&
+      axios
+        .get(`http://localhost:3001/api/user/${currentUser.email}/balance`)
+        .then((res) => dispatch(setBalance(res.data)));
   }, [currentUser, dispatch]);
 
   return (
     <div className="App">
       <Router>
         <nav>
-          <div>
+          <></>
+          <div className="center-nv">
             <Link to="/">Home</Link>
             {currentUser && <Link to="/portfolio">Portfolio</Link>}
             {currentUser ? (
@@ -38,7 +40,7 @@ function App() {
               <Link to="/login">Login</Link>
             )}
           </div>
-          <div className="rightnav">
+          <div className="right-nav">
             {currentUser && (
               <Link to="/balance">
                 Current Balance: ${Number(balance).toFixed(2)}{" "}

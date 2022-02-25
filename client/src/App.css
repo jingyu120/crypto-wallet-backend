@@ -17,10 +17,15 @@ nav {
   height: 100px;
   background-color: black;
   display: flex;
-  justify-content: center;
+  /*position: fixed;*/
+  /*top: 0;*/
+  /*overflow: auto;*/
+
+  /*justify-content: center;*/
   align-items: center;
   color: white;
   text-decoration: none;
+  justify-content: space-between;
 }
 
 a {
@@ -35,12 +40,12 @@ a {
   opacity: 0 !important;
 }
 
-.rightnav {
-  position: fixed;
-  right: 20px;
-}
+/*.rightnav {*/
+/*  position: fixed;*/
+/*  right: 20px;*/
+/*}*/
 
-.rightnav a {
+.right-nav a {
   font-size: medium;
 }
 
