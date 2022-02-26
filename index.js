@@ -14,7 +14,10 @@ app.use("/api/user", cryptoRoutes);
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://gracious-raman-429b5e.netlify.app",
+    origin: [
+      "https://gracious-raman-429b5e.netlify.app",
+      "http://localhost:3000",
+    ],
     methods: ["GET", "POST"],
   },
 });
