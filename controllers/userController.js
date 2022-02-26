@@ -105,7 +105,7 @@ export const SellCoin = async (req, res) => {
         u.amount -= amount;
         u.cost -= cost;
       });
-      user.balance -= cost;
+      user.balance += cost;
       await user.save();
       res.status(200).json(user.balance);
     }
